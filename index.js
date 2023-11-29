@@ -25,16 +25,25 @@ const addMovie = (e) => {
 
 const deleteMovie = (e) => {
   e.target.parentNode.remove();
-  message.textContent = "Movie deleted";
+  message.textContent = `${e.target.parentNode.firstChild.textContent} deleted!`;
+  revealMessage();
 };
 
-let crossOffMovie = (e) => {
+const crossOffMovie = (e) => {
   e.target.classList.toggle("checked");
   if (e.target.classList.contains("checked")) {
-    message.textContent = "Movie watched!";
+    message.textContent = `${e.target.textContent} watched!`;
   } else {
-    message.textContent = "Movie added back!";
+    message.textContent = `${e.target.textContent} added back!`;
   }
+
+  revealMessage();
+};
+
+const revealMessage = () => {
+  setTimeout(() => {
+    message.classList.add("hide");
+  }, 1000);
 };
 
 document.querySelector("form").addEventListener("submit", addMovie);
